@@ -9,7 +9,7 @@ python3 train.py
 ### 模型推理
 
 ```bash_script
-bash predict.py
+python3 predict.py
 ```
 
 模型推理的过程中也顺便转成了onnx模型`mobilenetv2_op9.onnx`, 利用此onnx模型, 就可以用trtexec转成trt模型.

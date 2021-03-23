@@ -8,6 +8,10 @@ python3 train.py
 
 ### 模型推理
 
+```bash_script
+python3 predict.py
+```
+
 模型推理的过程中也顺便转成了onnx模型`shufflenetv2.onnx`, 利用此onnx模型, 就可以用trtexec转成trt模型.
 
 生成的onnx有可能比较冗余, 可以先用onnxsim工具进行简化.
