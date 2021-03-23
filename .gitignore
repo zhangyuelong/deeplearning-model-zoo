@@ -1,0 +1,9 @@
+*.onnx
+*.pth
+*.engine
+*.trt
+*.pb
+*.plan
+/.idea/
+*/__pycache__
+
