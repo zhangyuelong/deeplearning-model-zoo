@@ -56,7 +56,7 @@ def main():
     torch.onnx.export(
         model,
         dummy_input,
-        'shfflenetv2.onnx',
+        'shufflenetv2.onnx',
         dynamic_axes={'image': {0: 'B'}, 'outputs': {0: 'B'}},
         input_names=['image'],
         output_names=['outputs'],
