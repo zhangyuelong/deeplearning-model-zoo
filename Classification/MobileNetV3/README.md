@@ -74,3 +74,90 @@ trtexec --loadEngine=mobilenetv3_large{small}.engine --shapes=image:?x3x224x224
 | 6 | 3.64682 | 3.87903 | 3.69076 | 3.67587 |
 | 7 | 4.09003 | 4.63895 | 4.15559 | 4.12738 |
 | 8 | 4.61621 | 4.83774 | 4.65540 | 4.64624 |
+
+### Triton Server部署
+
+配置文件:
+
+- pt模型
+
+```
+name: "mobilenetv3_pt"
+platform: "pytorch_libtorch"
+max_batch_size: 8
+
+input [
+  {
+    name: "INPUT__0"
+    data_type: TYPE_FP32
+    dims: [3, 224, 224]
+  }
+]
+
+output [
+  {
+    name: "OUTPUT__0"
+    data_type: TYPE_FP32
+    dims: [5]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+```
+
+- trt模型
+
+```
+name: "mobilenetv3_trt"
+platform: "tensorrt_plan"
+max_batch_size: 8
+input [
+  {
+    name: "image"
+    data_type: TYPE_FP32
+    dims: [ 3, 224, 224 ]
+  }
+]
+output [
+  {
+    name: "outputs"
+    data_type: TYPE_FP32
+    dims: [ 5 ]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+```
+
+性能报告(perf_client测试):
+
+**small**
+
+| Model/Batch_Size | Throughput(infer/sec) | Avg latency(ms) | p50 latency(ms) | p90 latency(ms) | p90 latency(ms) | p95 latency(ms) |
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+| torch/1 | 205.6 | 4.859 | 4.807 | 5.118 | 5.260 | 5485 |
+| trt/1 | 344.4 | 2.902 | 2.995 | 3.263 | 3.426 | 3.783 |
+| torch/2 | 366 | 5.466 | 5.401 | 5.739 | 5.930 | 6.297 |
+| trt/2 | 420 | 4.761 | 4.770 | 5.839 | 5.902 | 6.206 |
+| torch/3 | 448.8 | 6.684 | 6.189 | 8.144 | 9.125 | 11.177 |
+| trt/3 | 563.4 | 5.325 | 4.979 | 7.549 | 7.921 | 9.080 |
+| torch/4 | 576 | 6.944 | 6.897 | 7.099 | 7.220 | 7.714 |
+| trt/4 | 577.6 | 6.922 | 6.869 | 8.138 | 9.623 | 10.033 |
+| torch/5 | 588 | 8.490 | 8.387 | 8.811 | 9.118 | 9.429 |
+| trt/5 | 615 | 8.134 | 7.853 | 11.349 | 11.782 | 11.998 |
+| torch/6 | 591.6 | 10.148 | 9.883 | 10.906 | 11.058 | 11.373 |
+| trt/6 | 596.4 | 10.062 | 11.058 | 11.322 | 13.744 | 14.060 |
+| torch/7 | 623 | 11.239 | 11.183 | 11.463 | 11.636 | 12.183 |
+| trt/7 | 712.6 | 9.832 | 9.603 | 12.520 | 14.694 | 15.847 |
+| torch/8 | 628.8 | 12.704 | 12.628 | 12.818 | 13.435 | 13.657 |
+| trt/8 | 659.2 | 12.126 | 12.277 | 14.346 | 14.538 | 17.834 |

@@ -51,6 +51,8 @@ def main():
     model_weight_path = 'weights/MobileNetV3_Small.pth'
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
+
+    # PyTorch转ONNX
     print('=================================')
     dummy_input = torch.randn(1, 3, 224, 224).to(device)
     torch.onnx.export(
@@ -63,6 +65,12 @@ def main():
         opset_version=12
     )
     print('=================================')
+
+    # PyTorch转TorchScript
+    print('---------------------------------')
+    traced_script_module = torch.jit.trace(model, dummy_input)
+    traced_script_module.save("mobilenetv3_small.pt")
+    print('---------------------------------')
     with torch.no_grad():
         # predict class
         import time
