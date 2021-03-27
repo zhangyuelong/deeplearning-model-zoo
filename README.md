@@ -9,4 +9,6 @@
 
 - ShuffleNetV2
 
+- GhostNet
+
 
