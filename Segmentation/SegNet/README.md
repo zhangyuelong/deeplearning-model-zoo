@@ -1,3 +1,8 @@
+### 数据集和预训练权重
+
+- dataset: 链接: https://pan.baidu.com/s/1PQ5dmR9vfWfRb_w_DQhDUQ  密码: af8f
+- vgg16: https://download.pytorch.org/models/vgg16_bn-6c64b313.pth
+
 ### 模型训练
 
 ```bash_script
