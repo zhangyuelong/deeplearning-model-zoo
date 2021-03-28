@@ -11,4 +11,6 @@
 
 - GhostNet
 
+## Segmentation
 
+- SegNet
