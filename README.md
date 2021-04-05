@@ -16,3 +16,5 @@
 - SegNet
 
 - Unet
+
+- PSPNet
