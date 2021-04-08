@@ -13,8 +13,12 @@
 
 ## Segmentation
 
+- FCNet
+
 - SegNet
 
 - Unet
 
 - PSPNet
+
+- DeepLabv3(+)
