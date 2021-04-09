@@ -3,6 +3,8 @@
 
 ## Classification
 
+- LeNet
+
 - MobileNetV2
 
 - MobileNetV3
