@@ -34,7 +34,7 @@ trtexec --onnx=lenet.onnx \
         --maxShapes=image:8x3x224x224 \
         --minShapes=image:1x3x224x224 \
         --shapes=image:4x3x224x224 \
-        --saveEngine=lenet.onnx
+        --saveEngine=lenet.engine
 ```
 
 ### trt模型性能测试
