@@ -5,6 +5,8 @@
 
 - LeNet
 
+- AlexNet
+
 - MobileNetV2
 
 - MobileNetV3
