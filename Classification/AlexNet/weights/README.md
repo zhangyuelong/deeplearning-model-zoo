@@ -1,1 +1,1 @@
-lenet.pth will be saved here.
+alexnet.pth will be saved here.

@@ -7,6 +7,8 @@
 
 - AlexNet
 
+- VGGNet
+
 - MobileNetV2
 
 - MobileNetV3
