@@ -9,6 +9,8 @@
 
 - VGGNet
 
+- GoogLeNet
+
 - MobileNetV2
 
 - MobileNetV3
