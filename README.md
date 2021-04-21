@@ -11,6 +11,8 @@
 
 - GoogLeNet
 
+- ResNet
+
 - MobileNetV2
 
 - MobileNetV3
